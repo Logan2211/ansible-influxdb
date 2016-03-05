@@ -99,13 +99,12 @@ influxdb_graphite_enabled: "false"
 influxdb_graphite_port: 2003
 influxdb_graphite_protocol: tcp
 influxdb_graphite_consistency_level: one
-influxdb_graphite_name_separator: .
-influxdb_graphite_name_position: last
 influxdb_graphite_batch_size: 1000
 influxdb_graphite_batch_pending: 5
 influxdb_graphite_batch_timeout: 1s
-influxdb_graphite_name_schema: type.host.measurement.device
-influxdb_graphite_ignore_unnamed: "true"
+influxdb_graphite_separator: '.'
+influxdb_graphite_tags: []
+influxdb_graphite_templates: []
 
 ## Collectd Settings
 influxdb_collectd_enabled: "false"

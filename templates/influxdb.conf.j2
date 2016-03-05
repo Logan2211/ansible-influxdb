@@ -157,37 +157,19 @@ reporting-disabled = {{ influxdb_disable_reporting }}
   enabled = {{ influxdb_graphite_enabled }}
   # bind-address = ":{{ influxdb_graphite_port }}"
   # protocol = "{{ influxdb_graphite_protocol }}"
-  # consistency-level = "{{ influxdb_graphite_consistency_level }}"
-  # name-separator = "{{ influxdb_graphite_name_separator }}"
-  # name-position = "{{ influxdb_graphite_name_position }}"
+  consistency-level = "{{ influxdb_graphite_consistency_level }}"
 
   # These next lines control how batching works. You should have this enabled
   # otherwise you could get dropped metrics or poor performance. Batching
   # will buffer points in memory if you have many coming in.
 
-  # batch-size = {{ influxdb_graphite_batch_size }} # will flush if this many points get buffered
-  # batch-pending = {{ influxdb_graphite_batch_pending }} # number of batches that may be pending in memory
-  # batch-timeout = "{{ influxdb_graphite_batch_timeout }}" # will flush at least this often even if we haven't hit buffer limit
+  batch-size = {{ influxdb_graphite_batch_size }} # will flush if this many points get buffered
+  batch-pending = {{ influxdb_graphite_batch_pending }} # number of batches that may be pending in memory
+  batch-timeout = "{{ influxdb_graphite_batch_timeout }}" # will flush at least this often even if we haven't hit buffer limit
 
-  ## "name-schema" configures tag names for parsing the metric name from graphite protocol;
-  ## separated by `name-separator`.
-  ## The "measurement" tag is special and the corresponding field will become
-  ## the name of the metric.
-  ## e.g. "type.host.measurement.device" will parse "server.localhost.cpu.cpu0" as
-  ## {
-  ##     measurement: "cpu",
-  ##     tags: {
-  ##         "type": "server",
-  ##         "host": "localhost,
-  ##         "device": "cpu0"
-  ##     }
-  ## }
-  # name-schema = "{{ influxdb_graphite_name_schema }}"
-
-  ## If set to true, when the input metric name has more fields than `name-schema` specified,
-  ## the extra fields will be ignored.
-  ## Otherwise an error will be logged and the metric rejected.
-  # ignore-unnamed = {{ influxdb_graphite_ignore_unnamed }}
+  separator = "{{ influxdb_graphite_separator }}"
+  tags = {{ influxdb_graphite_tags | to_json }}
+  templates = {{ influxdb_graphite_templates | to_json }}
 
 ###
 {% if influxdb_runtime_version | version_compare('0.11', '>') %}
