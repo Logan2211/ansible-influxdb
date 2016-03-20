@@ -22,5 +22,5 @@ galaxy_info:
   categories:
     - clustering
     - database:nosql
-  dependencies: []
+dependencies: []
 
