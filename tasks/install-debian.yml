@@ -23,13 +23,14 @@
 
 - name: Import InfluxData GPG signing key [Debian/Ubuntu]
   apt_key:
-    url: https://repos.influxdata.com/influxdb.key
+    id: 2582E0C5
+    url: "{{ influxdb_apt_key_url }}"
     state: present
   when: influxdb_install_url is not defined or influxdb_install_url == None
 
 - name: Add InfluxData repository [Debian/Ubuntu]
   apt_repository:
-    repo: deb https://repos.influxdata.com/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} {{ influxdb_install_version }}
+    repo: deb {{ influxdb_apt_repo_url }} {{ ansible_distribution_release }} {{ influxdb_install_version }}
     state: present
   when: influxdb_install_url is not defined or influxdb_install_url == None
 

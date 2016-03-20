@@ -1,6 +1,8 @@
 ---
 # Channel of InfluxDB to install (stable, unstable, nightly)
 influxdb_install_version: stable
+influxdb_apt_repo_url: "https://repos.influxdata.com/{{ ansible_distribution | lower }}"
+influxdb_apt_key_url: https://repos.influxdata.com/influxdb.key
 
 # If multiple servers are specified, whether to create a clustered configuration
 # NOTE:
